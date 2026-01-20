@@ -1,15 +1,11 @@
-# @capgo/capacitor-persistent-account
+# @jesushr0013/capacitor-persistent-account
 
 This plugin allows you to securely store account information for a user in Capacitor, and keep it between reinstall
-
-## Documentation
-
-The most complete doc is available here: https://capgo.app/docs/plugins/persistent-account/
 
 ## Install
 
 ```bash
-npm install @capgo/capacitor-persistent-account
+npm install @jesushr0013/capacitor-persistent-account
 npx cap sync
 ```
 
