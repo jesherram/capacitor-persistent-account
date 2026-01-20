@@ -25,11 +25,17 @@ public class CapacitorPersistentAccountPlugin extends Plugin {
     public void readAccount(PluginCall call) {
         JSObject ret = new JSObject();
         try {
-            org.json.JSONObject data = implementation.readAccount();
-            if (data != null) {
-                ret.put("data", new org.json.JSONObject(data.toString()));
+            CapacitorPersistentAccount.AccountData accountData = implementation.readAccount();
+            if (accountData != null) {
+                if (accountData.data != null) {
+                    ret.put("data", new org.json.JSONObject(accountData.data.toString()));
+                } else {
+                    ret.put("data", org.json.JSONObject.NULL);
+                }
+                ret.put("accountName", accountData.accountName);
             } else {
                 ret.put("data", org.json.JSONObject.NULL);
+                ret.put("accountName", org.json.JSONObject.NULL);
             }
             call.resolve(ret);
         } catch (Exception e) {
@@ -41,8 +47,9 @@ public class CapacitorPersistentAccountPlugin extends Plugin {
     public void saveAccount(PluginCall call) {
         try {
             JSObject data = call.getObject("data");
+            String accountName = call.getString("accountName");
             org.json.JSONObject json = data != null ? new org.json.JSONObject(data.toString()) : null;
-            implementation.saveAccount(json);
+            implementation.saveAccount(json, accountName);
             call.resolve();
         } catch (Exception e) {
             call.reject("Failed to save account: " + e.getMessage());
