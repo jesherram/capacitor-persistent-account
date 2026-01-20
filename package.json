@@ -1,6 +1,6 @@
 {
-  "name": "@capgo/capacitor-persistent-account",
-  "version": "8.0.10",
+  "name": "@jesherram/capacitor-persistent-account",
+  "version": "1.0.0",
   "description": "This plugin allows you to securely store account information for a user in Capacitor",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -15,16 +15,16 @@
     "Package.swift",
     "CapgoCapacitorPersistentAccount.podspec"
   ],
-  "author": "Martin Donadieu <martin@capgo.app>",
+  "author": "jesherram",
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cap-go/capacitor-persistent-account.git"
+    "url": "git+https://github.com/jesherram/capacitor-persistent-account.git"
   },
   "bugs": {
-    "url": "https://github.com/Cap-go/capacitor-persistent-account/issues"
+    "url": "https://github.com/jesherram/capacitor-persistent-account/issues"
   },
-  "homepage": "https://capgo.app/docs/plugins/persistent-account/",
+  "homepage": "https://github.com/jesherram/capacitor-persistent-account#readme",
   "keywords": [
     "capacitor",
     "plugin",
