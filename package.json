@@ -1,5 +1,5 @@
 {
-  "name": "@jesherram/capacitor-persistent-account",
+  "name": "@jesushr0013/capacitor-persistent-account",
   "version": "1.0.0",
   "description": "This plugin allows you to securely store account information for a user in Capacitor",
   "main": "dist/plugin.cjs.js",
@@ -15,7 +15,7 @@
     "Package.swift",
     "CapgoCapacitorPersistentAccount.podspec"
   ],
-  "author": "jesherram",
+  "author": "jesushr0013",
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
