@@ -14,20 +14,21 @@ export interface CapacitorPersistentAccountPlugin {
    * Retrieves account data that was previously saved using saveAccount(). The data
    * persists across app sessions and survives app reinstallation on supported platforms.
    *
-   * @returns {Promise<{ data: unknown | null }>} A promise that resolves to an object
-   *   containing the stored account data, or null if no data has been saved yet.
+   * @returns {Promise<{ data: unknown | null; accountName: string | null }>} A promise that resolves to an object
+   *   containing the stored account data and account name, or null if no data has been saved yet.
    *
    * @example
    * ```typescript
    * const result = await CapacitorPersistentAccount.readAccount();
    * if (result.data) {
    *   console.log('Account data:', result.data);
+   *   console.log('Account name:', result.accountName);
    * } else {
    *   console.log('No account data found');
    * }
    * ```
    */
-  readAccount(): Promise<{ data: unknown | null }>;
+  readAccount(): Promise<{ data: unknown | null; accountName: string | null }>;
 
   /**
    * Saves account data to persistent storage.
@@ -38,6 +39,9 @@ export interface CapacitorPersistentAccountPlugin {
    *
    * @param {Object} options - The options object containing the data to save.
    * @param {unknown} options.data - The account data to persist. Can be any serializable data type.
+   * @param {string} [options.accountName] - Optional custom account name that will be displayed
+   *   in system settings (e.g., username, email, or any custom string). On Android, this name
+   *   appears in Settings > Accounts.
    *
    * @returns {Promise<void>} A promise that resolves when the data has been successfully saved.
    *
@@ -50,11 +54,12 @@ export interface CapacitorPersistentAccountPlugin {
    *     userId: '12345',
    *     username: 'john.doe',
    *     email: 'john@example.com'
-   *   }
+   *   },
+   *   accountName: 'john@example.com'
    * });
    * ```
    */
-  saveAccount(options: { data: unknown }): Promise<void>;
+  saveAccount(options: { data: unknown; accountName?: string }): Promise<void>;
 
   /**
    * Get the native Capacitor plugin version

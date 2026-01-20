@@ -35,7 +35,7 @@ AccountManager. This ensures account data persists even after app reinstallation
 ### readAccount()
 
 ```typescript
-readAccount() => Promise<{ data: unknown | null; }>
+readAccount() => Promise<{ data: unknown | null; accountName: string | null; }>
 ```
 
 Reads the stored account data from persistent storage.
@@ -43,7 +43,7 @@ Reads the stored account data from persistent storage.
 Retrieves account data that was previously saved using saveAccount(). The data
 persists across app sessions and survives app reinstallation on supported platforms.
 
-**Returns:** <code>Promise&lt;{ data: unknown; }&gt;</code>
+**Returns:** <code>Promise&lt;{ data: unknown; accountName: string | null; }&gt;</code>
 
 --------------------
 
@@ -51,7 +51,7 @@ persists across app sessions and survives app reinstallation on supported platfo
 ### saveAccount(...)
 
 ```typescript
-saveAccount(options: { data: unknown; }) => Promise<void>
+saveAccount(options: { data: unknown; accountName?: string; }) => Promise<void>
 ```
 
 Saves account data to persistent storage.
@@ -60,9 +60,9 @@ Stores the provided account data using platform-specific secure storage mechanis
 The data will persist across app sessions and survive app reinstallation.
 Any existing account data will be overwritten.
 
-| Param         | Type                            | Description                                       |
-| ------------- | ------------------------------- | ------------------------------------------------- |
-| **`options`** | <code>{ data: unknown; }</code> | - The options object containing the data to save. |
+| Param         | Type                                                  | Description                                       |
+| ------------- | ----------------------------------------------------- | ------------------------------------------------- |
+| **`options`** | <code>{ data: unknown; accountName?: string; }</code> | - The options object containing the data to save. |
 
 --------------------
 

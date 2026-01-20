@@ -19,8 +19,11 @@ public class CapacitorPersistentAccountPlugin: CAPPlugin, CAPBridgedPlugin {
 
     @objc func readAccount(_ call: CAPPluginCall) {
         do {
-            let value = try implementation.readAccount()
-            call.resolve([ "data": value ?? NSNull() ])
+            let result = try implementation.readAccount()
+            call.resolve([
+                "data": result.data ?? NSNull(),
+                "accountName": result.accountName ?? NSNull()
+            ])
         } catch {
             call.reject("Failed to read account: \(error.localizedDescription)")
         }
@@ -28,7 +31,8 @@ public class CapacitorPersistentAccountPlugin: CAPPlugin, CAPBridgedPlugin {
 
     @objc func saveAccount(_ call: CAPPluginCall) {
         do {
-            try implementation.saveAccount(call.getObject("data")) // expects any JSON-serializable object
+            let accountName = call.getString("accountName")
+            try implementation.saveAccount(call.getObject("data"), accountName: accountName)
             call.resolve()
         } catch {
             call.reject("Failed to save account: \(error.localizedDescription)")
